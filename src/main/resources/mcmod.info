@@ -1,0 +1,21 @@
+{
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "samscontent",
+    "name": "Builder's Powerups",
+    "description": "Apples of slowfall, waterwalking, haste, ghost, piston wand, water wand, waypoints, soulstones; blocks for fishing, scaffolding, shearing, weather; changes to mob spawning, sapling growth, ocean floor generation, fragile torches, many recipes altered and added.  See the config file for a complete feature list, and full control to disable anything.",
+    "version": "1.4.0",
+    "mcversion": "1.8",
+    "url": "https://github.com/PrinceOfAmber/SamsPowerups/releases",
+    "updateUrl": "",
+    "authorList": [ "Lothrazar" ],
+    "credits": "Thanks to LexManos for the gradle video, and everyone on the forums",
+    "logoFile": "",
+    "screenshots": [  ],
+    "parent": "",
+    "requiredMods": [ "Forge" ],
+    "dependencies": [  ],
+    "dependants": [  ],
+    "useDependencyInformation": false
+  }]
+}
