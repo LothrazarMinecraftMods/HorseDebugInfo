@@ -11,11 +11,6 @@ import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft; 
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.village.Village;
@@ -26,7 +21,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.item.ItemStack;
  
 public class DebugScreenText
 {   
@@ -241,7 +235,7 @@ public class DebugScreenText
 	private void addVillageInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player, World world) 
 	{
 		 int playerX = MathHelper.floor_double(player.posX);
-		 int playerY = MathHelper.floor_double(player.posY);
+		// int playerY = MathHelper.floor_double(player.posY);
 		 int playerZ = MathHelper.floor_double(player.posZ);
 		 
 		 int dX,dZ;
