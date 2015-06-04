@@ -39,7 +39,7 @@ public class DebugScreenText
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
 
-		if(ModMain.cfg.reducedDebugImproved && 
+		if(ModScreenText.cfg.reducedDebugImproved && 
 				world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
 		{ 
 			//then replace all existing text with just this
@@ -52,15 +52,15 @@ public class DebugScreenText
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo)
 		{
 			 
-			if(ModMain.cfg.reducedDebugImproved && 
+			if(ModScreenText.cfg.reducedDebugImproved && 
 					world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
 			{ 
 				int blockLight = world.getLightFromNeighbors(player.getPosition()) + 1;
 				
-				String firstLine = ModMain.lang("debug.biome")+"  "+world.getBiomeGenForCoords(player.getPosition()).biomeName;
+				String firstLine = ModScreenText.lang("debug.biome")+"  "+world.getBiomeGenForCoords(player.getPosition()).biomeName;
 	
 				//EnumChatFormatting.GREEN + 
-				String light = ModMain.lang("debug.light")+"  "+blockLight;
+				String light = ModScreenText.lang("debug.light")+"  "+blockLight;
 					//	+"  "+world.getLight(player.getPosition(), true)
 					//	+"  "+world.getLightBrightness(player.getPosition())
 						
@@ -81,17 +81,17 @@ public class DebugScreenText
 			addDateTimeInfo(event, world);
 			
 			  
-		 	if(ModMain.cfg.debugSlime && player.dimension == 0)
+		 	if(ModScreenText.cfg.debugSlime && player.dimension == 0)
 		 	{ 
 		 		addSlimeChunkInfo(event, player, world); 
 		 	}
 		 	
-		 	if(ModMain.cfg.debugVillageInfo && world.villageCollectionObj != null)
+		 	if(ModScreenText.cfg.debugVillageInfo && world.villageCollectionObj != null)
 		 	{   
 		 		addVillageInfo(event, player, world);	 
 			}
 		 	
-		 	if(ModMain.cfg.debugHorseInfo && player.ridingEntity != null && player.ridingEntity instanceof EntityHorse)
+		 	if(ModScreenText.cfg.debugHorseInfo && player.ridingEntity != null && player.ridingEntity instanceof EntityHorse)
 		 	{ 
 		 		addHorseInfo(event, player);   
 		 	} 
@@ -102,7 +102,7 @@ public class DebugScreenText
 			//addTodoCommandInfo(event, player);  
 	
 		 	if( (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-		 			&& ModMain.cfg.debugGameruleInfo)  
+		 			&& ModScreenText.cfg.debugGameruleInfo)  
 		 	{ 
 				addGameruleInfo(event, world); 
 			}
@@ -221,15 +221,15 @@ public class DebugScreenText
 		if(spots != null) type += " ("+spots+")";
 
 		//event.left.add("");
-		event.left.add(ModMain.lang("debug.horsetype")+"  "+type); 
+		event.left.add(ModScreenText.lang("debug.horsetype")+"  "+type); 
 
 		DecimalFormat df = new DecimalFormat("0.0000");
 		
-		event.left.add(ModMain.lang("debug.horsespeed")+"  "+ df.format(speed)   ); 
+		event.left.add(ModScreenText.lang("debug.horsespeed")+"  "+ df.format(speed)   ); 
 		
 		df = new DecimalFormat("0.0");
 		
-		event.left.add(ModMain.lang("debug.horsejump") +"  "+ df.format(jumpHeight) );
+		event.left.add(ModScreenText.lang("debug.horsejump") +"  "+ df.format(jumpHeight) );
 	}
 
 	private void addVillageInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player, World world) 
@@ -251,16 +251,16 @@ public class DebugScreenText
 		     
 		    int rep = closest.getReputationForPlayer(player.getName());
   
-		    event.left.add(ModMain.lang("debug.villagepop")+"  "+String.format("%d",villagers));
-		    event.left.add(ModMain.lang("debug.villagerep")+"  "+String.format("%d",rep));
-		    event.left.add(ModMain.lang("debug.villagedoors")+"  "+String.format("%d",doors));
+		    event.left.add(ModScreenText.lang("debug.villagepop")+"  "+String.format("%d",villagers));
+		    event.left.add(ModScreenText.lang("debug.villagerep")+"  "+String.format("%d",rep));
+		    event.left.add(ModScreenText.lang("debug.villagedoors")+"  "+String.format("%d",doors));
  
 		    dX = playerX - closest.getCenter().getX();
 		    dZ = playerZ - closest.getCenter().getZ();
 		    
 		    int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
 
-		    event.left.add(ModMain.lang("debug.villagedistcenter")+"  "+String.format("%d", dist)); 
+		    event.left.add(ModScreenText.lang("debug.villagedistcenter")+"  "+String.format("%d", dist)); 
 		 }
 	}
 
@@ -282,7 +282,7 @@ public class DebugScreenText
     
 		if(isSlimeChunk)
 		{
-			event.left.add(ModMain.lang("debug.slimechunk")); 
+			event.left.add(ModScreenText.lang("debug.slimechunk")); 
 		}
 	}
  
@@ -296,10 +296,10 @@ public class DebugScreenText
 		
 		String detail = "";
 	
-		if(remainder < 5000) detail = ModMain.lang("debug.morning");
-		else if(remainder < 7000) detail = ModMain.lang("debug.midday");//midd ay is exactly 6k, so go one on each side
-		else if(remainder < 12000) detail = ModMain.lang("debug.afternoon");
-		else detail = ModMain.lang("debug.moonphase") + " " + world.getMoonPhase();
+		if(remainder < 5000) detail = ModScreenText.lang("debug.morning");
+		else if(remainder < 7000) detail = ModScreenText.lang("debug.midday");//midd ay is exactly 6k, so go one on each side
+		else if(remainder < 12000) detail = ModScreenText.lang("debug.afternoon");
+		else detail = ModScreenText.lang("debug.moonphase") + " " + world.getMoonPhase();
 
 		// a 365 day calendar. Day Zero is January 1st of year zero?``
 		 //http://stackoverflow.com/questions/8263220/calendar-set-year-issue
@@ -315,7 +315,7 @@ public class DebugScreenText
 		 
 		Date curr = addDays(start,days);
  
-		event.left.add(ModMain.lang("debug.days") + days +", "+detail);
+		event.left.add(ModScreenText.lang("debug.days") + days +", "+detail);
 		event.left.add(sdf.format(curr));
 	}
 }

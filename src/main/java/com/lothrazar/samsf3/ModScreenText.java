@@ -9,21 +9,20 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
   
-@Mod(modid = ModMain.MODID, version = ModMain.VERSION,	name = ModMain.NAME, useMetadata = true )  
-public class ModMain
+@Mod(modid = ModScreenText.MODID, version = ModScreenText.VERSION,	name = ModScreenText.NAME, useMetadata = true )  
+public class ModScreenText
 {
-	public static final String MODID = "samscontent";
+	public static final String MODID = "samsf3";
 	public static final String TEXTURE_LOCATION = MODID + ":";
-	public static final String VERSION = "1.8-1.4.0";
-	public static final String NAME = "Builder's Powerups";
+	public static final String VERSION = "1.8-1.0.0";
+	public static final String NAME = "Builder's Screen Text";
 	@Instance(value = MODID)
-	public static ModMain instance;
+	public static ModScreenText instance;
 	public static Logger logger; 
 	public static ConfigRegistry cfg;
    
