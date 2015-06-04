@@ -24,7 +24,7 @@ public class ModScreenText
 	@Instance(value = MODID)
 	public static ModScreenText instance;
 	public static Logger logger; 
-	public static ConfigRegistry cfg;
+	public static ConfigText cfg;
    
 
 	public static String lang(String name)
@@ -36,7 +36,7 @@ public class ModScreenText
 	{ 
 		logger = event.getModLog();  
 		
-		cfg = new ConfigRegistry(new Configuration(event.getSuggestedConfigurationFile()));
+		cfg = new ConfigText(new Configuration(event.getSuggestedConfigurationFile()));
 	  
      
 		 

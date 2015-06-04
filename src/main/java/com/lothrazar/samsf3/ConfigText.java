@@ -2,7 +2,7 @@ package com.lothrazar.samsf3;
 
 import net.minecraftforge.common.config.Configuration;
 
-public class ConfigRegistry
+public class ConfigText
 { 
 	private Configuration instance;
 	private String category = "";
@@ -17,7 +17,7 @@ public class ConfigRegistry
 		return instance;
 	}
 	
-	public ConfigRegistry(Configuration c)
+	public ConfigText(Configuration c)
 	{
 		instance = c; 
 		instance.load();
