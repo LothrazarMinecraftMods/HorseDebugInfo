@@ -23,16 +23,14 @@ archivesBaseName = "Screentext"
 
 minecraft {
     version = "1.8-11.14.1.1334"
-if(file('../run').exists()){
-assetDir = "../run/assets"
-}else{
-assetDir = "assets"
-}
-if(file('../run').exists()){
-assetDir = "../run/eclipse"
-}else{
-assetDir = "eclipse"
-}    
+	if(file('../run').exists()){
+		assetDir  = "../run/assets"
+		runDir = "../run/eclipse"
+	}else{
+		assetDir = "assets"
+		runDir = "eclipse"
+	}
+ 
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
     // stable_#            stables are built at the discretion of the MCP team.
