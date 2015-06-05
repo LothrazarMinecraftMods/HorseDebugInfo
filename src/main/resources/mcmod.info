@@ -4,7 +4,7 @@
     "modid": "samsf3",
     "name": "Sam's Screen Text",
     "description": "Horse, Village, and Slime chunk info on debug screen.  Also clean and rearrange the whole thing if gamerule reduceDebugInfo = true.",
-    "version": "1.4.0",
+    "version": "1.0.0",
     "mcversion": "1.8",
     "url": "https://github.com/PrinceOfAmber/SamsPowerups/releases",
     "updateUrl": "",

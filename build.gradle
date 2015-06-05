@@ -17,9 +17,9 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.0"
+version = "1.8-1.0.0"
 group= "com.lothrazar.samsf3" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Screentext"
+archivesBaseName = "SamsScreentext"
 
 minecraft {
     version = "1.8-11.14.1.1334"
