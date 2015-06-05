@@ -1,9 +1,9 @@
 {
   "modListVersion": 2,
   "modList": [{
-    "modid": "samscontent",
-    "name": "Builder's Powerups",
-    "description": "Apples of slowfall, waterwalking, haste, ghost, piston wand, water wand, waypoints, soulstones; blocks for fishing, scaffolding, shearing, weather; changes to mob spawning, sapling growth, ocean floor generation, fragile torches, many recipes altered and added.  See the config file for a complete feature list, and full control to disable anything.",
+    "modid": "samsf3",
+    "name": "Sam's Screen Text",
+    "description": "Horse, Village, and Slime chunk info on debug screen.  Also clean and rearrange the whole thing if gamerule reduceDebugInfo = true.",
     "version": "1.4.0",
     "mcversion": "1.8",
     "url": "https://github.com/PrinceOfAmber/SamsPowerups/releases",
