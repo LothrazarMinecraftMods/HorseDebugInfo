@@ -97,7 +97,7 @@ public class DebugScreenText
 		 	} 
 	
 		
-			//CommandSimpleWaypoints.AddWaypointInfo(event); 
+			//
 			
 			//addTodoCommandInfo(event, player);  
 	
