@@ -39,7 +39,8 @@ public class DebugScreenText
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
 
-		if(ModScreenText.cfg.reducedDebugImproved && 
+		if(Minecraft.getMinecraft().gameSettings.showDebugInfo && //IF f3 screen is being shown
+				ModScreenText.cfg.reducedDebugImproved && 
 				world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
 		{ 
 			//then replace all existing text with just this
