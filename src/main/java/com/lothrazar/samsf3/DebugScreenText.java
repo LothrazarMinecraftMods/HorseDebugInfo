@@ -53,7 +53,7 @@ public class DebugScreenText
 				BlockPos pos = player.getPosition();
 				int blockLight = world.getLightFromNeighbors(pos) + 1;
 				
-				String biome = ModScreenText.lang("debug.biome")+"  "+world.getBiomeGenForCoords(player.getPosition()).biomeName;
+				String biome = ModScreenText.lang("debug.biome")+world.getBiomeGenForCoords(player.getPosition()).biomeName;
 
 				event.left.add(biome);
 				 
@@ -61,7 +61,7 @@ public class DebugScreenText
 				
 				if(player.isSneaking()) 
 				{ 
-					event.left.add(ModScreenText.lang("debug.light")+"  "+blockLight);
+					event.left.add(ModScreenText.lang("debug.light")+blockLight);
 					
 					event.left.add("FPS: "+Minecraft.getDebugFPS());
 				} 
@@ -93,9 +93,7 @@ public class DebugScreenText
 	}
  
 	private void addGameruleInfo(RenderGameOverlayEvent.Text event, World world) 
-	{
-		event.right.add(""); 
-		
+	{ 
 		GameRules rules = world.getWorldInfo().getGameRulesInstance();
 		
 		ArrayList<String> ruleNames = new ArrayList<String>();
@@ -298,7 +296,6 @@ public class DebugScreenText
 		 
 		Date curr = addDays(start,days);
  
-		event.left.add(ModScreenText.lang("debug.days") + days +", "+detail);
-		event.left.add(sdf.format(curr));
+		event.left.add(ModScreenText.lang("debug.days") + days +", "+detail+", "+sdf.format(curr));
 	}
 }
