@@ -11,6 +11,7 @@ import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.Minecraft; 
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.village.Village;
@@ -32,56 +33,42 @@ public class DebugScreenText
         return calendar.getTime();
 	}
 	 
-  
+	 public static String posToString(BlockPos position) 
+		{ 
+			return "["+ position.getX() + ", "+position.getY()+", "+position.getZ()+"]";
+		} 
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{  
 		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
-
-		if(Minecraft.getMinecraft().gameSettings.showDebugInfo && //IF f3 screen is being shown
-				ModScreenText.cfg.reducedDebugImproved && 
-				world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
-		{ 
-			//then replace all existing text with just this
-			event.right.clear();
-			event.left.clear();
-			
-		}
-
-	
+ 
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo)
 		{
 			 
-			if(ModScreenText.cfg.reducedDebugImproved && 
-					world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
+			if(world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
 			{ 
-				int blockLight = world.getLightFromNeighbors(player.getPosition()) + 1;
+				event.right.clear();
+				event.left.clear();
+				BlockPos pos = player.getPosition();
+				int blockLight = world.getLightFromNeighbors(pos) + 1;
 				
-				String firstLine = ModScreenText.lang("debug.biome")+"  "+world.getBiomeGenForCoords(player.getPosition()).biomeName;
-	
-				//EnumChatFormatting.GREEN + 
-				String light = ModScreenText.lang("debug.light")+"  "+blockLight;
-					//	+"  "+world.getLight(player.getPosition(), true)
-					//	+"  "+world.getLightBrightness(player.getPosition())
-						
+				String biome = ModScreenText.lang("debug.biome")+"  "+world.getBiomeGenForCoords(player.getPosition()).biomeName;
+
+				event.left.add(biome);
+				 
+				event.left.add(posToString(pos));
 				
-				
-				if(player.isSneaking()) // L for light
-					firstLine = firstLine +"  "+light;
-				
-				//Minecraft.getMinecraft().getDebugFPS()
-				
-				event.left.add(firstLine);
-				
-				
-	
+				if(player.isSneaking()) 
+				{ 
+					event.left.add(ModScreenText.lang("debug.light")+"  "+blockLight);
+					
+					event.left.add("FPS: "+Minecraft.getDebugFPS());
+				} 
 			}
 			
-	 
 			addDateTimeInfo(event, world);
 			
-			  
 		 	if(ModScreenText.cfg.debugSlime && player.dimension == 0)
 		 	{ 
 		 		addSlimeChunkInfo(event, player, world); 
@@ -96,13 +83,8 @@ public class DebugScreenText
 		 	{ 
 		 		addHorseInfo(event, player);   
 		 	} 
-	
-		
-			//
-			
-			//addTodoCommandInfo(event, player);  
-	
-		 	if( (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+	 
+		 	if( player.isSneaking()//(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
 		 			&& ModScreenText.cfg.debugGameruleInfo)  
 		 	{ 
 				addGameruleInfo(event, world); 

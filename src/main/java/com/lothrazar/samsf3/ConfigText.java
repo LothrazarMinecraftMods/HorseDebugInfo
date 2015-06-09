@@ -7,7 +7,6 @@ public class ConfigText
 	private Configuration instance;
 	private String category = "";
 	public boolean debugGameruleInfo;
-	public boolean reducedDebugImproved;
 	public boolean debugSlime;
 	public boolean debugHorseInfo;
 	public boolean debugVillageInfo;
@@ -22,13 +21,13 @@ public class ConfigText
 		instance = c; 
 		instance.load();
 		
-		category = "debug_screen_f3";
+		category = ModScreenText.MODID;
 		
 		debugGameruleInfo = instance.getBoolean("gamerule_info_sneaking",category, true,
     			"If you are sneaking, the right side shows all the game rules, on or off. " );
 		 
-		reducedDebugImproved = instance.getBoolean("reducedDebugInfo_improved",category, true,
-    			"If this gamerule is turned on, then much more useless information is cleared away (with coordinates still hidden), but some is added back in such as the biome name. " );
+		//reducedDebugImproved = instance.getBoolean("reducedDebugInfo_improved",category, true,
+    	//		"If this gamerule is turned on, then much more useless information is cleared away (with coordinates still hidden), but some is added back in such as the biome name. " );
 		
 		debugSlime = instance.getBoolean("slime",category, true,
     			"Shows if you are standing in a slime chunk." );
@@ -40,8 +39,5 @@ public class ConfigText
     			"Shows info on any village you are standing in.");
 		
 		if(instance.hasChanged()){ instance.save(); }
-	}
-
-	        
-	   
+	} 
 }
