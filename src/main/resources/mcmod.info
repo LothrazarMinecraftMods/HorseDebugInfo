@@ -2,7 +2,7 @@
   "modListVersion": 2,
   "modList": [{
     "modid": "samsf3",
-    "name": "Sam's Screen Text",
+    "name": "More Screen Info",
     "description": "Horse, Village, and Slime chunk info on debug screen.  Game rules listed on the right side while players are sneaking.  Clean and rearrange the whole thing if gamerule reduceDebugInfo = true.",
     "version": "1.8-1.0.0",
     "mcversion": "1.8",
