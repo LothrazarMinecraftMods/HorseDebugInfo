@@ -250,6 +250,8 @@ public class DebugScreenText
 	{
 		long seed =  world.getSeed();
     
+		
+		
 		Chunk in = world.getChunkFromBlockCoords(player.getPosition());
 
 		//formula source : http://minecraft.gamepedia.com/Slime
