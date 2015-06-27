@@ -33,10 +33,10 @@ public class DebugScreenText
         return calendar.getTime();
 	}
 	 
-	 public static String posToString(BlockPos position) 
-		{ 
-			return "["+ position.getX() + ", "+position.getY()+", "+position.getZ()+"]";
-		} 
+	public static String posToString(BlockPos position) 
+	{ 
+		return "["+ position.getX() + ", "+position.getY()+", "+position.getZ()+"]";
+	} 
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{  
@@ -45,7 +45,6 @@ public class DebugScreenText
  
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo)
 		{
-			 
 			if(world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
 			{ 
 				event.right.clear();
