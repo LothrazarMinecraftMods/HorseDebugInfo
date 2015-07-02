@@ -1,15 +1,2 @@
-debug.afternoon=Afternoon
-debug.biome=Biome:
-debug.days=Day #
-debug.horsetype=Horse Type:
-debug.horsespeed=Speed:
-debug.horsejump=Jump:
-debug.light=L:
-debug.midday=Midday
-debug.morning=Morning
-debug.moonphase=Moon Phase
-debug.slimechunk=Slime Chunk
-debug.villagedistcenter=Center:
-debug.villagedoors=Valid Doors:
-debug.villagepop=Village Population:
-debug.villagerep=Village Reputation:
+debug.horsespeed=Horse Speed:
+debug.horsejump=Horse Jump:
