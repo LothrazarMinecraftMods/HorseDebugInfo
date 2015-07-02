@@ -5,9 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;  
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;   
-
-import org.lwjgl.input.Keyboard;
+import java.util.Random;    
 
 import net.minecraft.client.Minecraft; 
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -20,11 +18,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityHorse;
  
 public class DebugScreenText
 {   
+	public static final long ticksPerDay = 24000 ;
 	 public Date addDays(Date baseDate, int daysToAdd) 
 	 {
         Calendar calendar = Calendar.getInstance();
@@ -37,6 +38,8 @@ public class DebugScreenText
 	{ 
 		return "["+ position.getX() + ", "+position.getY()+", "+position.getZ()+"]";
 	} 
+	
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{  
@@ -66,12 +69,12 @@ public class DebugScreenText
 				} 
 			}
 			
-			addDateTimeInfo(event, world);
+			//addDateTimeInfo(event, world);
 			
-		 	if(ModScreenText.cfg.debugSlime && player.dimension == 0)
-		 	{ 
-		 		addSlimeChunkInfo(event, player, world); 
-		 	}
+		 	//if(ModScreenText.cfg.debugSlime && player.dimension == 0)
+		 	//{ 
+		 	//	addSlimeChunkInfo(event, player, world); 
+		 	//}
 		 	
 		 	if(ModScreenText.cfg.debugVillageInfo && world.villageCollectionObj != null)
 		 	{   
@@ -90,7 +93,8 @@ public class DebugScreenText
 			}
 		}  
 	}
- 
+
+	@SideOnly(Side.CLIENT)
 	private void addGameruleInfo(RenderGameOverlayEvent.Text event, World world) 
 	{ 
 		GameRules rules = world.getWorldInfo().getGameRulesInstance();
@@ -140,7 +144,8 @@ public class DebugScreenText
 		public static final int type_zombie = 3;
 		public static final int type_skeleton = 4;
 	}
- 
+
+	@SideOnly(Side.CLIENT)
 	private void addHorseInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player) 
 	{
 		EntityHorse horse = (EntityHorse)player.ridingEntity;
@@ -212,6 +217,8 @@ public class DebugScreenText
 		event.left.add(ModScreenText.lang("debug.horsejump") +"  "+ df.format(jumpHeight) );
 	}
 
+
+	@SideOnly(Side.CLIENT)
 	private void addVillageInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player, World world) 
 	{
 		 int playerX = MathHelper.floor_double(player.posX);
@@ -244,7 +251,9 @@ public class DebugScreenText
 		 }
 	}
 
-	public static final long ticksPerDay = 24000 ;
+	
+
+	@SideOnly(Side.CLIENT)
 	private void addSlimeChunkInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player, World world)
 	{
 		long seed =  world.getSeed();
@@ -265,7 +274,8 @@ public class DebugScreenText
 			event.left.add(ModScreenText.lang("debug.slimechunk")); 
 		}
 	}
- 
+
+	@SideOnly(Side.CLIENT)
 	private void addDateTimeInfo(RenderGameOverlayEvent.Text event, World world) 
 	{
 		long time = world.getWorldTime(); 

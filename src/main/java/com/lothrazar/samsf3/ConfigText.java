@@ -7,7 +7,7 @@ public class ConfigText
 	private Configuration instance;
 	private String category = "";
 	public boolean debugGameruleInfo;
-	public boolean debugSlime;
+	//public boolean debugSlime;
 	public boolean debugHorseInfo;
 	public boolean debugVillageInfo;
 	
@@ -29,8 +29,8 @@ public class ConfigText
 		//reducedDebugImproved = instance.getBoolean("reducedDebugInfo_improved",category, true,
     	//		"If this gamerule is turned on, then much more useless information is cleared away (with coordinates still hidden), but some is added back in such as the biome name. " );
 		
-		debugSlime = instance.getBoolean("slime",category, true,
-    			"Shows if you are standing in a slime chunk." );
+		//debugSlime = instance.getBoolean("slime",category, true,
+    	//		"Shows if you are standing in a slime chunk." );
 		
 		debugHorseInfo = instance.getBoolean("horse",category, true,
     			"Shows info on any horse ridden including speed, jump height, species.");
