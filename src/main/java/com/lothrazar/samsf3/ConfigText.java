@@ -9,7 +9,7 @@ public class ConfigText
 	public boolean debugGameruleInfo;
 	//public boolean debugSlime;
 	public boolean debugHorseInfo;
-	public boolean debugVillageInfo;
+	//public boolean debugVillageInfo;
 	
 	public Configuration instance()
 	{
@@ -35,8 +35,8 @@ public class ConfigText
 		debugHorseInfo = instance.getBoolean("horse",category, true,
     			"Shows info on any horse ridden including speed, jump height, species.");
 		
-		debugVillageInfo = instance.getBoolean("village",category, true,
-    			"Shows info on any village you are standing in.");
+		//debugVillageInfo = instance.getBoolean("village",category, true,
+    	//		"Shows info on any village you are standing in.");
 		
 		if(instance.hasChanged()){ instance.save(); }
 	} 

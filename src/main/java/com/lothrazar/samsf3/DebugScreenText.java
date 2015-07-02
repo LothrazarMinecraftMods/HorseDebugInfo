@@ -5,17 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;  
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;    
-
 import net.minecraft.client.Minecraft; 
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
-import net.minecraft.village.Village;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -43,12 +39,11 @@ public class DebugScreenText
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{  
-		//World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
-		World world = player.worldObj;
-		
+	
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo)
 		{
+			/*
 			if(world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
 			{ 
 				event.right.clear();
@@ -69,19 +64,8 @@ public class DebugScreenText
 					event.left.add("FPS: "+Minecraft.getDebugFPS());
 				} 
 			}
-			
-			//addDateTimeInfo(event, world);
-			
-		 	//if(ModScreenText.cfg.debugSlime && player.dimension == 0)
-		 	//{ 
-		 	//	addSlimeChunkInfo(event, player, world); 
-		 	//}
-		 	
-		 	if(ModScreenText.cfg.debugVillageInfo && world.villageCollectionObj != null)
-		 	{   
-		 		addVillageInfo(event, player, world);	 
-			}
-		 	
+			*/
+	  
 		 	if(ModScreenText.cfg.debugHorseInfo && player.ridingEntity != null && player.ridingEntity instanceof EntityHorse)
 		 	{ 
 		 		addHorseInfo(event, player);   
@@ -90,15 +74,15 @@ public class DebugScreenText
 		 	if( player.isSneaking()
 		 			&& ModScreenText.cfg.debugGameruleInfo)  
 		 	{ 
-				addGameruleInfo(event, world); 
+				addGameruleInfo(event); 
 			}
 		}  
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void addGameruleInfo(RenderGameOverlayEvent.Text event, World world) 
+	private void addGameruleInfo(RenderGameOverlayEvent.Text event) 
 	{ 
-		GameRules rules = world.getWorldInfo().getGameRulesInstance();
+		GameRules rules = Minecraft.getMinecraft().thePlayer.worldObj.getWorldInfo().getGameRulesInstance();
 		
 		ArrayList<String> ruleNames = new ArrayList<String>();
 		ruleNames.add("commandBlockOutput");
@@ -217,43 +201,7 @@ public class DebugScreenText
 		
 		event.left.add(ModScreenText.lang("debug.horsejump") +"  "+ df.format(jumpHeight) );
 	}
-
-
-	@SideOnly(Side.CLIENT)
-	private void addVillageInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player, World world) 
-	{
-		 int playerX = MathHelper.floor_double(player.posX);
-		// int playerY = MathHelper.floor_double(player.posY);
-		 int playerZ = MathHelper.floor_double(player.posZ);
-		 
-		 int dX,dZ;
-		 
-		 int range = 10;
-
-		 Village closest = world.villageCollectionObj.getNearestVillage(player.getPosition(), range);
-		 
-		 if(closest != null)
-		 { 
-		    int doors = closest.getNumVillageDoors();
-		    int villagers = closest.getNumVillagers();
-		     
-		    int rep = closest.getReputationForPlayer(player.getName());
-  
-		    event.left.add(ModScreenText.lang("debug.villagepop")+"  "+String.format("%d",villagers));
-		    event.left.add(ModScreenText.lang("debug.villagerep")+"  "+String.format("%d",rep));
-		    event.left.add(ModScreenText.lang("debug.villagedoors")+"  "+String.format("%d",doors));
- 
-		    dX = playerX - closest.getCenter().getX();
-		    dZ = playerZ - closest.getCenter().getZ();
-		    
-		    int dist = MathHelper.floor_double(Math.sqrt( dX*dX + dZ*dZ));
-
-		    event.left.add(ModScreenText.lang("debug.villagedistcenter")+"  "+String.format("%d", dist)); 
-		 }
-	}
-
-	
-
+/*
 	@SideOnly(Side.CLIENT)
 	private void addSlimeChunkInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player, World world)
 	{
@@ -274,7 +222,7 @@ public class DebugScreenText
 		{
 			event.left.add(ModScreenText.lang("debug.slimechunk")); 
 		}
-	}
+	}*/
 
 	@SideOnly(Side.CLIENT)
 	private void addDateTimeInfo(RenderGameOverlayEvent.Text event, World world) 
