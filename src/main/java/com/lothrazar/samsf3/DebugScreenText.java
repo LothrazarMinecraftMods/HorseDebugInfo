@@ -1,17 +1,8 @@
 package com.lothrazar.samsf3;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;  
-import java.util.Calendar;
-import java.util.Date;
 import net.minecraft.client.Minecraft; 
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,6 +12,7 @@ import net.minecraft.entity.passive.EntityHorse;
  
 public class DebugScreenText
 {   
+	/*
 	public static final long ticksPerDay = 24000 ;
 	 public Date addDays(Date baseDate, int daysToAdd) 
 	 {
@@ -34,7 +26,7 @@ public class DebugScreenText
 	{ 
 		return "["+ position.getX() + ", "+position.getY()+", "+position.getZ()+"]";
 	} 
-	
+	*/
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
@@ -43,42 +35,19 @@ public class DebugScreenText
 	
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo)
 		{
-			/*
-			if(world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
-			{ 
-				event.right.clear();
-				event.left.clear();
-				BlockPos pos = player.getPosition();
-				int blockLight = world.getLightFromNeighbors(pos) + 1;
-				
-				String biome = ModScreenText.lang("debug.biome")+world.getBiomeGenForCoords(player.getPosition()).biomeName;
-
-				event.left.add(biome);
-				 
-				event.left.add(posToString(pos));
-				
-				if(player.isSneaking()) 
-				{ 
-					event.left.add(ModScreenText.lang("debug.light")+blockLight);
-					
-					event.left.add("FPS: "+Minecraft.getDebugFPS());
-				} 
-			}
-			*/
-	  
-		 	if(ModScreenText.cfg.debugHorseInfo && player.ridingEntity != null && player.ridingEntity instanceof EntityHorse)
+		 	if(player.ridingEntity != null && player.ridingEntity instanceof EntityHorse)
 		 	{ 
-		 		addHorseInfo(event, player);   
+		 		addHorseInfo(event, player, (EntityHorse)player.ridingEntity);   
 		 	} 
-	 
+	 /*
 		 	if( player.isSneaking()
 		 			&& ModScreenText.cfg.debugGameruleInfo)  
 		 	{ 
 				addGameruleInfo(event); 
-			}
+			}*/
 		}  
 	}
-
+/*
 	@SideOnly(Side.CLIENT)
 	private void addGameruleInfo(RenderGameOverlayEvent.Text event) 
 	{ 
@@ -93,8 +62,10 @@ public class DebugScreenText
 		ruleNames.add("doMobSpawning");
 		ruleNames.add("doTileDrops");
 		ruleNames.add("keepInventory");
+		ruleNames.add("logAdminCommands");
 		ruleNames.add("mobGriefing");
 		ruleNames.add("naturalRegeneration");
+		ruleNames.add("randomTickSpeed");
 		ruleNames.add("reducedDebugInfo");
 		ruleNames.add("sendCommandFeedback");
 		ruleNames.add("showDeathMessages"); 
@@ -103,16 +74,24 @@ public class DebugScreenText
 		for(int i = 0; i < ruleNames.size(); i++)
 		{
 			name = ruleNames.get(i);
-			if(rules.getGameRuleBooleanValue(name))
-			{ 
-				event.right.add(EnumChatFormatting.GREEN + name); 
+			
+			if(name.equalsIgnoreCase("randomTickSpeed"))
+			{
+				event.right.add(name+"="+rules.getInt(name)); 
 			}
 			else
-			{ 
-				event.right.add(EnumChatFormatting.RED + name); 
+			{
+				if(rules.getGameRuleBooleanValue(name))
+				{ 
+					event.right.add(EnumChatFormatting.GREEN + name); 
+				}
+				else
+				{ 
+					event.right.add(EnumChatFormatting.RED + name); 
+				}
 			}
 		}
-	}
+	}*/
 	public static class Horse
 	{
 		public static final int variant_white = 0;
@@ -131,10 +110,8 @@ public class DebugScreenText
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void addHorseInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player) 
-	{
-		EntityHorse horse = (EntityHorse)player.ridingEntity;
-		   
+	private void addHorseInfo(RenderGameOverlayEvent.Text event,	EntityPlayerSP player,EntityHorse horse) 
+	{ 
 		double speed =  horse.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue() ;
 			 
 		double jump = horse.getHorseJumpStrength() ;
@@ -147,7 +124,7 @@ public class DebugScreenText
 			jump -= 0.08;
 			jump *= gravity;
 		}
-	
+		/*
 		//http://minecraft.gamepedia.com/Item_id#Horse_Variants
 		String variant = "";
 		 
@@ -189,9 +166,9 @@ public class DebugScreenText
 		}
 
 		if(spots != null) type += " ("+spots+")";
-
+*/
 		//event.left.add("");
-		event.left.add(ModScreenText.lang("debug.horsetype")+"  "+type); 
+		//event.left.add(ModScreenText.lang("debug.horsetype")+"  "+type); 
 
 		DecimalFormat df = new DecimalFormat("0.0000");
 		
@@ -223,7 +200,7 @@ public class DebugScreenText
 			event.left.add(ModScreenText.lang("debug.slimechunk")); 
 		}
 	}*/
-
+/*
 	@SideOnly(Side.CLIENT)
 	private void addDateTimeInfo(RenderGameOverlayEvent.Text event, World world) 
 	{
@@ -255,5 +232,5 @@ public class DebugScreenText
 		Date curr = addDays(start,days);
  
 		event.left.add(ModScreenText.lang("debug.days") + days +", "+detail+", "+sdf.format(curr));
-	}
+	}*/
 }

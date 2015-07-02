@@ -7,9 +7,7 @@ public class ConfigText
 	private Configuration instance;
 	private String category = "";
 	public boolean debugGameruleInfo;
-	//public boolean debugSlime;
 	public boolean debugHorseInfo;
-	//public boolean debugVillageInfo;
 	
 	public Configuration instance()
 	{
