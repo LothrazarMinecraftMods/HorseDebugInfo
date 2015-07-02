@@ -1,9 +1,6 @@
 package com.lothrazar.samsf3;
 
-import java.util.ArrayList; 
-
 import org.apache.logging.log4j.Logger;   
-
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;

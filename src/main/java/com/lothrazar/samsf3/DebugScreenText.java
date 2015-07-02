@@ -43,9 +43,10 @@ public class DebugScreenText
 	@SubscribeEvent
 	public void onRenderTextOverlay(RenderGameOverlayEvent.Text event)
 	{  
-		World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
+		//World world = Minecraft.getMinecraft().getIntegratedServer().getEntityWorld();
 		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer; 
- 
+		World world = player.worldObj;
+		
 		if(Minecraft.getMinecraft().gameSettings.showDebugInfo)
 		{
 			if(world.getGameRules().getGameRuleBooleanValue("reducedDebugInfo") )
@@ -86,7 +87,7 @@ public class DebugScreenText
 		 		addHorseInfo(event, player);   
 		 	} 
 	 
-		 	if( player.isSneaking()//(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+		 	if( player.isSneaking()
 		 			&& ModScreenText.cfg.debugGameruleInfo)  
 		 	{ 
 				addGameruleInfo(event, world); 
